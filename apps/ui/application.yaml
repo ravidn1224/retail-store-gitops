@@ -3,17 +3,17 @@ kind: Application
 metadata:
   name: retail-store-ui
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/ravidn1224/ravid-retail-store-app
-    targetRevision: main
-    path: src/ui/chart
-    
+  sources:
+    - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
+      targetRevision: main
+      path: src/ui/chart
+
+    - repoURL: https://github.com/ravidn1224/retail-store-gitops
+      targetRevision: main
+      path: apps/ui
 
   destination:
     server: https://kubernetes.default.svc
@@ -23,5 +23,7 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+
+  helm:
+    valueFiles:
+      - values.yaml
