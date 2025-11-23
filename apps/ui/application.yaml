@@ -8,7 +8,7 @@ metadata:
 
 spec:
   project: default
-  
+
   source:
     repoURL: https://github.com/ravidn1224/ravid-retail-store-app
     targetRevision: main
@@ -16,11 +16,11 @@ spec:
     helm:
       valueFiles:
         - ../../../retail-store-gitops/apps/ui/values.yaml
-  
+
   destination:
     server: https://kubernetes.default.svc
     namespace: default
-  
+
   syncPolicy:
     automated:
       prune: true

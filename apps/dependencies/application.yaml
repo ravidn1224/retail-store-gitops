@@ -13,7 +13,7 @@ spec:
     repoURL: https://github.com/ravidn1224/retail-store-gitops
     targetRevision: main
     path: apps/dependencies
-  
+
   destination:
     server: https://kubernetes.default.svc
     namespace: default
