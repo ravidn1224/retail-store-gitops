@@ -7,13 +7,17 @@ spec:
   project: default
 
   sources:
+    # App repo (Helm chart)
     - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
       targetRevision: main
       path: src/ui/chart
 
+    # GitOps repo (values)
     - repoURL: https://github.com/ravidn1224/retail-store-gitops
       targetRevision: main
       path: apps/ui
+      directory:
+        recurse: false
 
   destination:
     server: https://kubernetes.default.svc
