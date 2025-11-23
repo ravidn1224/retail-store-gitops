@@ -24,3 +24,6 @@ spec:
       prune: true
       selfHeal: true
 
+  helm:
+    valueFiles:
+      - values.yaml
