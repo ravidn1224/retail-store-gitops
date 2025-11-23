@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: 630019796862.dkr.ecr.eu-central-1.amazonaws.com/ravid-retail-store-ui
-  tag: "ca8de84"
+  tag: "35e5ead"
   pullPolicy: Always
 
 imagePullSecrets:
