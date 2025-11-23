@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/ravidn1224/retail-store-gitops.git # ---> Where the Kubernetes Manifests. 
     targetRevision: main
-    path: apps/catalog
+    path: apps/ui
     helm:
       valueFiles:
         - values.yaml
