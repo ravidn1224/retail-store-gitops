@@ -1,33 +1,23 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: retail-store-ui
-  namespace: argocd
-spec:
-  project: default
+project: default
+destination:
+  server: https://kubernetes.default.svc
+  namespace: default
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
 
-  sources:
-    # App repo (Helm chart)
-    - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
-      targetRevision: main
-      path: src/ui/chart
+sources:
+  - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
+    path: src/ui/chart
+    targetRevision: main
 
-    # GitOps repo (values)
-    - repoURL: https://github.com/ravidn1224/retail-store-gitops
-      targetRevision: main
-      path: apps/ui
-      directory:
-        recurse: false
+  - repoURL: https://github.com/ravidn1224/retail-store-gitops
+    path: apps/ui
+    targetRevision: main
+    directory:
+      recurse: false
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
-
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-
-  helm:
-    valueFiles:
-      - values.yaml
+helm:
+  valueFiles:
+    - values.yaml
