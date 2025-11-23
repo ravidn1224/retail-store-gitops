@@ -3,16 +3,23 @@ kind: Application
 metadata:
   name: retail-store-cart
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/ravidn1224/ravid-retail-store-app.git
-    targetRevision: main
-    path: src/cart/chart
+  # --- MULTI SOURCE ---
+  sources:
+    # 1) Chart source (APP REPO)
+    - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
+      targetRevision: main
+      path: src/cart/chart
+      helm:
+        valueFiles:
+          - $values/apps/cart/values.yaml
+
+    # 2) Values source (GITOPS REPO)
+    - repoURL: https://github.com/ravidn1224/retail-store-gitops
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
@@ -22,5 +29,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true

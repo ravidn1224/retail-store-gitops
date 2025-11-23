@@ -3,19 +3,23 @@ kind: Application
 metadata:
   name: retail-store-orders
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/ravidn1224/ravid-retail-store-app
-    targetRevision: main
-    path: src/orders/chart
-    helm:
-      valueFiles:
-        - ../../../retail-store-gitops/apps/orders/values.yaml
+  # --- MULTI SOURCE ---
+  sources:
+    # 1) Chart source (APP REPO)
+    - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
+      targetRevision: main
+      path: src/orders/chart
+      helm:
+        valueFiles:
+          - $values/apps/orders/values.yaml
+
+    # 2) Values source (GITOPS REPO)
+    - repoURL: https://github.com/ravidn1224/retail-store-gitops
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
@@ -25,5 +29,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
