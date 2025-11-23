@@ -3,18 +3,23 @@ kind: Application
 metadata:
   name: retail-store
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
+
   source:
-    repoURL: https://github.com/ravidn1224/retail-store-gitops
+    repoURL: https://github.com/ravidn1224/retail-store-gitops.git
     targetRevision: main
     path: apps
     directory:
       recurse: true
       include: '*.yaml'
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: argocd
+
   syncPolicy:
     automated:
       prune: true
