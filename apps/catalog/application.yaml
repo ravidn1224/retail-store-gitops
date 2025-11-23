@@ -13,9 +13,7 @@ spec:
     repoURL: https://github.com/ravidn1224/ravid-retail-store-app
     targetRevision: main
     path: src/catalog/chart
-    helm:
-      valueFiles:
-        - ../../../retail-store-gitops/apps/catalog/values.yaml
+    
 
   destination:
     server: https://kubernetes.default.svc
