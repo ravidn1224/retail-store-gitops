@@ -1,9 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: "630019796862.dkr.ecr.eu-central-1.amazonaws.com/ravid-retail-store-ui"
+  repository: 630019796862.dkr.ecr.eu-central-1.amazonaws.com/ravid-retail-store-ui
   tag: "latest"
   pullPolicy: Always
+
+imagePullSecrets:
+  - name: ecr-secret
 
 service:
   type: ClusterIP
@@ -17,18 +20,11 @@ resources:
     memory: 512Mi
 
 livenessProbe:
-  httpGet:
-    path: /actuator/health/liveness
-    port: 8080
+  path: /actuator/health/liveness
   initialDelaySeconds: 20
   periodSeconds: 10
 
 readinessProbe:
-  httpGet:
-    path: /actuator/health/readiness
-    port: 8080
+  path: /actuator/health/readiness
   initialDelaySeconds: 10
   periodSeconds: 10
-
-imagePullSecrets:
-  - name: ecr-secret
