@@ -10,7 +10,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/ravidn1224/retail-store-gitops
+    repoURL: https://github.com/ravidn1224/retail-store-gitops.git
     targetRevision: main
     path: apps/dependencies
 
