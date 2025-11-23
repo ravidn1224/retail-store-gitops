@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: retail-store-ui
+  name: retail-store-orders
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,10 +12,10 @@ spec:
   source:
     repoURL: https://github.com/ravidn1224/ravid-retail-store-app
     targetRevision: main
-    path: src/ui/chart
+    path: src/orders/chart
     helm:
       valueFiles:
-        - ../../../retail-store-gitops/apps/ui/values.yaml
+        - ../../../retail-store-gitops/apps/orders/values.yaml
   
   destination:
     server: https://kubernetes.default.svc
