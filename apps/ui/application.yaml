@@ -8,7 +8,6 @@ spec:
 
   # --- MULTI SOURCE ---
   sources:
-    # 1) Chart source (APP REPO)
     - repoURL: https://github.com/ravidn1224/ravid-retail-store-app
       targetRevision: main
       path: src/ui/chart
@@ -16,7 +15,6 @@ spec:
         valueFiles:
           - $values/apps/ui/values.yaml
 
-    # 2) Values source (GITOPS REPO)
     - repoURL: https://github.com/ravidn1224/retail-store-gitops
       targetRevision: main
       ref: values
