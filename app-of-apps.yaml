@@ -27,5 +27,6 @@ spec:
   
   ignoreDifferences:
     - kind: Ingress
+      group: networking.k8s.io
       jsonPointers:
-        - /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
+      - /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
