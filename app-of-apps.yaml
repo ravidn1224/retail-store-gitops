@@ -30,6 +30,10 @@ spec:
       kind: Service
       jsonPointers:
         - /metadata/annotations/argocd.argoproj.io~1tracking-id
+    - group: ""
+      kind: Deployment
+      jsonPointers:
+        - /metadata/annotations/argocd.argoproj.io~1tracking-id
     - group: networking.k8s.io
       kind: Ingress
       jsonPointers:
