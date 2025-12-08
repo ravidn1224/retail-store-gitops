@@ -3,35 +3,16 @@ kind: Application
 metadata:
   name: retail-store
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-
   source:
     repoURL: https://github.com/ravidn1224/retail-store-gitops.git
     targetRevision: main
     path: apps
-
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
-
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-  
-  ignoreDifferences:
-    - group: ""
-      kind: Service
-      jsonPointers:
-        - /metadata/annotations/argocd.argoproj.io~1tracking-id
-    - group: ""
-      kind: Deployment
-      jsonPointers:
-        - /metadata/annotations/argocd.argoproj.io~1tracking-id
-    - group: networking.k8s.io
-      kind: Ingress
-      jsonPointers:
-        - /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
