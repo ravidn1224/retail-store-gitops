@@ -18,9 +18,14 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
 
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+  
+  ignoreDifferences:
+    - kind: Ingress
+      jsonPointers:
+        - /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
