@@ -26,7 +26,11 @@ spec:
       selfHeal: true
   
   ignoreDifferences:
-    - kind: Ingress
-      group: networking.k8s.io
+    - group: ""
+      kind: Service
       jsonPointers:
-      - /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
+        - /metadata/annotations/argocd.argoproj.io~1tracking-id
+    - group: networking.k8s.io
+      kind: Ingress
+      jsonPointers:
+        - /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
