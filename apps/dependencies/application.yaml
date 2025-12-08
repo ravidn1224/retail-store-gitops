@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: retail-store-dependencies
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 
 spec:
   project: default
@@ -12,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/ravidn1224/retail-store-gitops.git
     targetRevision: main
-    path: apps/dependencies
+    path: apps/dependencies  # ← כאן נמצאים dynamodb.yaml, rabbitmq.yaml וכו'
 
   destination:
     server: https://kubernetes.default.svc
@@ -22,5 +20,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
