@@ -11,6 +11,7 @@ imagePullSecrets:
 service:
   type: NodePort
   port: 8080
+  nodePort: 30113
 
 resources:
   requests:
