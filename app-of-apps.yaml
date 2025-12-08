@@ -12,9 +12,6 @@ spec:
     repoURL: https://github.com/ravidn1224/retail-store-gitops.git
     targetRevision: main
     path: apps
-    directory:
-      recurse: true
-      include: '*.yaml'
 
   destination:
     server: https://kubernetes.default.svc
